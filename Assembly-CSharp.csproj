@@ -40,6 +40,7 @@
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\GroundSpawner.cs" />
      <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
+     <Compile Include="Assets\Scripts\GameOverManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

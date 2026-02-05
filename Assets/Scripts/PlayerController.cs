@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 /// <summary>
 /// automatic move forward and change line using A and D or the left and right arrows
 /// </summary>
@@ -17,10 +19,18 @@ public class PlayerController : MonoBehaviour
     private bool isDead = false;
     private float startingZ;
 
+    //high score
+
+    public TextMeshProUGUI highScoreText;
+    private float highScore = 0;
+
     void Start()
     {
         PlayerPosition = transform.position;
         startingZ = transform.position.z;
+
+        highScore = PlayerPrefs.GetFloat("HighScore", 0);
+        UpdateHighScoreText();
     }
 
     void Update()
@@ -74,14 +84,38 @@ public class PlayerController : MonoBehaviour
             // Score is the total distance traveled on the Z axis
             float distance = transform.position.z - startingZ;
             scoreText.text = "Score: " + Mathf.FloorToInt(distance / 10).ToString();
+
+            if ((distance / 10) > highScore)
+            {
+                highScore = distance / 10;
+                PlayerPrefs.SetFloat("HighScore", highScore);
+                UpdateHighScoreText();
+            }
         }
     }
+
+    void UpdateHighScoreText()
+    {
+        if (highScoreText != null)
+        {
+            highScoreText.text = "Best: " + Mathf.FloorToInt(highScore).ToString();
+        }
+    }
+
     void Die()
     {
         isDead = true;
         forwardSpeed = 0;
-        Debug.Log("Game Over!");
-        // You can trigger a UI panel here
+
+        float finalScore = (transform.position.z - startingZ) / 10;
+        PlayerPrefs.SetFloat("LastScore", finalScore);
+
+
+        float highScore = PlayerPrefs.GetFloat("HighScore", 0);
+        if (finalScore > highScore)
+        {
+            PlayerPrefs.SetFloat("HighScore", finalScore);
+        }
 
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)
@@ -93,6 +127,8 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector3(0, 0f, -1f), ForceMode.Impulse);
 
         }
+
+        SceneManager.LoadScene("GameOver");
     }
 
 }
