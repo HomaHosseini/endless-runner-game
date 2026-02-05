@@ -9,10 +9,10 @@ public class GroundSpawner : MonoBehaviour
 {
     public GameObject groundPrefab;   // prefab of one ground tile
     public int initialTiles = 5;      // number of tiles to start with
-    public float tileLength = 50f;    // Z-length of one tile
+    public float tileLength = 20f;    // Z-length of one tile
     public Transform player;          // player to follow
 
-    public float safeZone = 15f;      // how far behind before a tile is destroyed
+    public float safeZone = 25f;      // how far behind before a tile is destroyed
 
     private List<GameObject> activeTiles = new List<GameObject>();
     private float nextSpawnZ = 0f;

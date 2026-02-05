@@ -113,9 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefabs:
   - {fileID: 7040324367668770461, guid: bf6f2288d11fe5e4fac48154e48a526b, type: 3}
+  - {fileID: 6529422524365248934, guid: ccf52a0f895e67a419f85cd2335b75c2, type: 3}
   zStart: -4.5
-  zInterval: 3
+  zInterval: 4
   zEnd: 4.5
-  rowSpawnChance: 0.75
-  maxObstaclesPerRow: 1
+  rowSpawnChance: 0.6
   laneDistance: 3
