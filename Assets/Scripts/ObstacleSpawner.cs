@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// spawn obstacles randomly 
+/// it should be attached to ground prefab
+/// </summary>
 public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs;

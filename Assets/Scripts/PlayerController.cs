@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 /// <summary>
 /// automatic move forward and change line using A and D or the left and right arrows
@@ -68,13 +69,14 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision");
-        // Check if we hit an object tagged as "Obstacle"
+
         if (collision.gameObject.CompareTag("Obstacle") && !isDead)
         {
             Die();
         }
     }
+
+
 
 
     void UpdateScore()
@@ -128,6 +130,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        StartCoroutine(LoadGameOverAfterDelay(1.5f));
+    }
+    IEnumerator LoadGameOverAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("GameOver");
     }
 

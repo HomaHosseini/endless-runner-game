@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Follows the player smoothly along the Z axis (
+/// Follows the player smoothly along the Z axis 
 /// </summary>
 public class CameraMovement : MonoBehaviour
 {

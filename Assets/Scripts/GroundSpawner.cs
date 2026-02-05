@@ -22,7 +22,7 @@ public class GroundSpawner : MonoBehaviour
         // Pre-spawn initial ground tiles
         for (int i = 0; i < initialTiles; i++)
         {
-            SpawnTile();
+            SpawnTile(i == 0);
         }
     }
 
@@ -33,19 +33,29 @@ public class GroundSpawner : MonoBehaviour
         // Spawn next tile when player approaches end
         if (player.position.z - safeZone > (nextSpawnZ - initialTiles * tileLength))
         {
-            SpawnTile();
+            SpawnTile(false);
             DeleteBehindTile();
         }
     }
 
-    void SpawnTile()
+    void SpawnTile(bool isEmpty)
     {
         Vector3 spawnPos = new Vector3(0f, -1f, nextSpawnZ);
         GameObject tile = Instantiate(groundPrefab, spawnPos, Quaternion.identity);
+
+        //  If it should be empty, find and disable the ObstacleSpawner
+        if (isEmpty)
+        {
+            ObstacleSpawner spawner = tile.GetComponent<ObstacleSpawner>();
+            if (spawner != null)
+            {
+                spawner.enabled = false;
+            }
+        }
+
         activeTiles.Add(tile);
         nextSpawnZ += tileLength;
     }
-
     void DeleteBehindTile()
     {
         if (activeTiles.Count == 0) return;

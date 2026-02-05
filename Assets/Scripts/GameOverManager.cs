@@ -2,6 +2,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// show player score and the best score and function for restart
+/// </summary>
 public class GameOverManager : MonoBehaviour
 {
     public TextMeshProUGUI lastScoreText;
