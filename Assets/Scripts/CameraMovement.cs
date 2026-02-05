@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public Transform target;
-    public Vector3 offset = new Vector3(0f, 5f, -10f);
+    public Vector3 offset = new Vector3(0f, 3f, -10f);
     public float followSpeed = 5f;
 
     void LateUpdate()
